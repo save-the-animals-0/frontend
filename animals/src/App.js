@@ -3,6 +3,7 @@ import dummyData from './dummy-data'
 import './App.css';
 // import SearchBar from './components/SearchBar/SearchBar';
 import PostContainer from './components/PostContainer';
+import Login from './login/renderer';
 
 class App extends React.Component {
   state = {
@@ -37,7 +38,8 @@ class App extends React.Component {
           searchFilter={this.searchFilter}
         /> */}
 
-        <PostContainer data={this.state.data} filteredPosts={this.state.filteredPosts} searchFilter={this.searchFilter} />
+        {/* <PostContainer data={this.state.data} filteredPosts={this.state.filteredPosts} searchFilter={this.searchFilter} /> */}
+        <Login />
       </div>
     );
 

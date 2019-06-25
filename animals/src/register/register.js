@@ -10,7 +10,7 @@ class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
-    this.submitLogin = this.submitLogin.bind(this);
+    this.submitRegister = this.submitRegister.bind(this);
     }
 
   handleChange(event) {
@@ -25,7 +25,7 @@ class Login extends React.Component {
     event.preventDefault();
   }
 
-  submitLogin(event) {
+  submitRegister(event) {
     axios
    .post('api/login')
    .then(res => console.log(res))
@@ -41,13 +41,15 @@ class Login extends React.Component {
             <h1>Login</h1>
         <form>
             <input
+            type="text" name="email" value={this.state.email} onChange={this.handleEmail}
+            />
+            <input
             type="text" name="username" value={this.state.username} onChange={this.handleChange}
             />
             <input
             type="text" name="password" value={this.state.password} onChange={this.handlePassword} />
         </form>
-        <button onClick={this.submitLogin}>Enter</button>
-        <p><a href="">Not a member? Register here!</a></p>
+        <button onClick={this.submitRegister}>Enter</button>
         </div>
         )
     }
