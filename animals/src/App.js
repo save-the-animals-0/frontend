@@ -1,49 +1,26 @@
-import React from 'react';
-import dummyData from './dummy-data'
+import React, {Component} from 'react';
 import './App.css';
-// import SearchBar from './components/SearchBar/SearchBar';
-import PostContainer from './components/PostContainer';
-import Login from './login/renderer';
+import OrgProject from './components/main/OrgProject';
 
-class App extends React.Component {
-  state = {
-    data: [],
-    filteredPosts: []
-  };
+export default class App extends Component {
 
-  changeHandler = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+  constructor() {
+    super();
+    this.state= {
+      data:[]
+    }
   }
 
-  addNewComment = e => {
-    e.preventDefault();
+  componentDidMount() {
+    fetch('https://protected-temple-41202.herokuapp.com/')
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
   }
 
-  componentDidMount(){
-    this.setState({data: dummyData})
-  }
-
-  searchFilter = e => {
-    const filtered = this.state.data.filter(post => post.username.toLowerCase().includes(e.target.value.toLowerCase()))
-  }
-
-  render() {
-    console.log('render0', this.state.data);
-    return(
-      <div className='App'>
-        {/* <SearchBar
-          newSearch={this.state.search}
-          searchFilter={this.searchFilter}
-        /> */}
-
-        {/* <PostContainer data={this.state.data} filteredPosts={this.state.filteredPosts} searchFilter={this.searchFilter} /> */}
-        <Login />
-      </div>
-    );
-
-  }
+  render(){
+  return (
+    <div className="App">
+      <OrgProject />
+    </div>
+  )};
 }
-
-export default App;
